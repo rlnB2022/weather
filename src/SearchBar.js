@@ -5,8 +5,8 @@ function SearchBar(props) {
     function handleKeyUp(e) {
         if(e.which === 13 || e.keycode === 13) {
             if(props.cityOrZip === 'postal_code' && e.target.value.length === 5) {
-                console.log('inside');
                 props.onKeyUp('search search-to-top');
+                props.getWeather();
             }
         }
     }

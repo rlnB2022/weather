@@ -13,6 +13,28 @@ function App() {
   const [searchBarClassName, setSearchBarClassName] = useState('search');
   const [curWeather, setCurWeather] = useState(null);
 
+  function getWeather() {
+    // perform the search
+    const xhr = new XMLHttpRequest();
+
+    xhr.onload = () => {
+        if(xhr.status >= 200 && xhr.status < 300) {
+            // success
+            console.log(JSON.parse(xhr.responseText));
+            let arrText = JSON.parse(xhr.responseText);
+
+            // displayInfo(arrText);
+        }
+        else {
+            // error
+        }
+    }
+
+    xhr.open('GET','https://api.weatherbit.io/v2.0/current?units=I&key=c74b01fb5d114516a2260d9f3fd04907&' + cityOrZipString + '=' + cityOrZip + '', true);
+
+    xhr.send();
+  }
+
   function handleOnChange(e) {
     if(parseInt(e.target.value) > -1) {
       setMax(5);
@@ -41,7 +63,7 @@ function App() {
   return (
     <div className="App">
       <AppHeader />
-      <SearchBar cityOrZip={cityOrZipString} onKeyUp={handleOnKeyUp} searchBarClassName={searchBarClassName} searchBarPlaceHolder={name} onFocus={handleOnFocus} onBlur={handleOnBlur} onChange={handleOnChange} maxLength={max} />
+      <SearchBar getWeather={getWeather} cityOrZip={cityOrZipString} onKeyUp={handleOnKeyUp} searchBarClassName={searchBarClassName} searchBarPlaceHolder={name} onFocus={handleOnFocus} onBlur={handleOnBlur} onChange={handleOnChange} maxLength={max} />
       <CurrentWeather />
     </div>
   );
