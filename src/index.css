@@ -12,17 +12,36 @@ code {
     monospace;
 }
 
+::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.app-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 10vh;
+  width: 100%;
+  background-color: rgba(0,0,0,.4);
+}
+
 .search {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
+  transition: top .4s ease-in-out;
+}
+
+.search-to-top {
+  top: 15vh;
 }
 
 .input-container {
   height: 10vh;
-  width: 50%;
+  width: 25%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -32,7 +51,7 @@ code {
 .user-input {
   border-radius: 50px;
   border: 3px solid white;
-  font-size: 32px;
+  font-size: 7vw;
   background-color: rgba(0,0,0,.1);
   padding: 10px;
   text-align: center;
@@ -43,4 +62,12 @@ code {
   background-color: rgba(0,0,0,.1);
   padding: 20px;
   border-radius: 10px;
+}
+
+.current-weather-container {
+  height: 75vh;
+  width: 100%;
+  background: url('./images/mobile-day-clear.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
