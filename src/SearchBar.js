@@ -1,25 +1,14 @@
 import React, { useState } from 'react';
 
 function SearchBar(props) {
-    // const [name, setName] = useState('Enter City or Zip Code');
-    // const [max, setMax] = useState(5);
-    // const [cityOrZip, setCityOrZip] = useState('');
-    // const [cityOrZipString, setCityOrZipString] = useState('city');
-    const [searchBarClassName, setSearchBarClassName] = useState('search');
 
-    // restrict length of input based on whether first character is a number or letter
-    function handleChange(e) {
-        props.onChange(e);
-        // if(parseInt(e.target.value) > -1) {
-        //     setMax(5);
-        //     setCityOrZipString('postal_code');
-        //     setCityOrZip(e.target.value);
-        // }
-        // else {
-        //     setMax(99);
-        //     setCityOrZipString('city');
-        //     setCityOrZip(e.target.value);
-        // }
+    function handleKeyUp(e) {
+        if(e.which === 13 || e.keycode === 13) {
+            if(props.cityOrZip === 'postal_code' && e.target.value.length === 5) {
+                console.log('inside');
+                props.onKeyUp('search search-to-top');
+            }
+        }
     }
 
     // function handleKeyUp(e) {
@@ -61,9 +50,9 @@ function SearchBar(props) {
     }
 
     return (
-        <section className={searchBarClassName}>
+        <section className={props.searchBarClassName}>
             <div className="input-container">
-                <input type="text" maxLength={props.maxLength} onChange={handleOnChange} onBlur={handleOnBlur} onFocus={handleOnFocus} placeholder={props.searchBarPlaceHolder} className='user-input' />
+                <input type="text" onKeyUp={handleKeyUp} maxLength={props.maxLength} onChange={handleOnChange} onBlur={handleOnBlur} onFocus={handleOnFocus} placeholder={props.searchBarPlaceHolder} className='user-input' />
             </div>
         </section>
     )
