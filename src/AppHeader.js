@@ -2,9 +2,9 @@ import React from 'react';
 
 function AppHeader(props) {
     return (
-        <div className="app-header">
-            <div className="logo">
-
+        <div id="header-text-id" className="app-header">
+            <div className={props.headerText}>
+                The Weather Guy
             </div>
         </div>
     )

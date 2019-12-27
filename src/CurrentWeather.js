@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
+import CityState from './CityState';
+import IconTempWind from './IconTempWind';
+import FeelsLike from './FeelsLike';
 
 function CurrentWeather(props) {
 
     return (
-        <div className='current-weather-container'>
-            
+        <div className={props.show_weather}>
+            <CityState citystate={props.citystate}/>
+            <IconTempWind />
+            <FeelsLike />
         </div>
     )
 }

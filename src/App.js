@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 import AppHeader from './AppHeader';
 import SearchBar from './SearchBar';
 import CurrentWeather from './CurrentWeather';
@@ -11,19 +10,39 @@ function App() {
   const [cityOrZip, setCityOrZip] = useState('');
   const [cityOrZipString, setCityOrZipString] = useState('city');
   const [searchBarClassName, setSearchBarClassName] = useState('search');
-  const [curWeather, setCurWeather] = useState(null);
+  const [temp, setTemp] = useState(0);
+  const [windSpeed, setWindSpeed] = useState(0);
+  const [showWeather, setShowWeather] = useState('current-weather-container');
+  const [appTemp, setAppTemp] = useState(0);
+  const [cityState, setCityState] = useState('');
+  const [headerText, setHeaderText] = useState('header-text');
+
+  let arrWeather = {};
 
   function getWeather() {
+    // reposition searchBar
+    setSearchBarClassName('search search-to-top');
+
     // perform the search
     const xhr = new XMLHttpRequest();
 
     xhr.onload = () => {
         if(xhr.status >= 200 && xhr.status < 300) {
             // success
-            console.log(JSON.parse(xhr.responseText));
-            let arrText = JSON.parse(xhr.responseText);
+            arrWeather = JSON.parse(xhr.responseText);
 
-            // displayInfo(arrText);
+            setTemp(arrWeather.data[0].temp);
+            setWindSpeed(arrWeather.data[0].wind_spd);
+            setShowWeather('current-weather-container show-current-weather-container');
+            setAppTemp(arrWeather.data[0].app_temp);
+
+            // City and State
+            let currentCity = arrWeather.data[0].city_name;
+            let currentState = arrWeather.data[0].state_code;
+            let currentCityState = currentCity + ', ' + currentState;
+            
+            setCityState(currentCityState);
+
         }
         else {
             // error
@@ -56,15 +75,15 @@ function App() {
     setName(newValue);
   }
 
-  function handleOnKeyUp(newValue) {
-    setSearchBarClassName(newValue);
+  function handleOnKeyUp() {
+    setHeaderText('header-text header-text-small');
   }
 
   return (
     <div className="App">
-      <AppHeader />
+      <AppHeader headerText={headerText} />
       <SearchBar getWeather={getWeather} cityOrZip={cityOrZipString} onKeyUp={handleOnKeyUp} searchBarClassName={searchBarClassName} searchBarPlaceHolder={name} onFocus={handleOnFocus} onBlur={handleOnBlur} onChange={handleOnChange} maxLength={max} />
-      <CurrentWeather />
+      <CurrentWeather citystate={cityState} show_weather={showWeather} wind_speed={windSpeed} temp={temp} feelsLike={appTemp}/>
     </div>
   );
 }

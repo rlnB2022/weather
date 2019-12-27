@@ -1,3 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -17,26 +23,45 @@ code {
   opacity: 1;
 }
 
-.app-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 10vh;
+.App {
+  height: 100vh;
   width: 100%;
-  background-color: rgba(0,0,0,.4);
+  background: url('./images/mobile-day-clear.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.app-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+  background-color: rgba(0,0,0,.2);
+  color: white;
+}
+
+.header-text {
+  top: 0vh;
+  position: relative;
+  font-size: 8vw;
+  transition: all .2s ease-in-out;
+}
+
+.header-text-small {
+  font-size: 6vw;
+  top: -5vh;
 }
 
 .search {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50vh;
+  left: 50vw;
   transform: translate(-50%, -50%);
-  width: 100%;
-  transition: top .4s ease-in-out;
+  transition: top .2s ease-in-out;
 }
 
 .search-to-top {
-  top: 15vh;
+  top: 10vh;
 }
 
 .input-container {
@@ -56,18 +81,37 @@ code {
   padding: 10px;
   text-align: center;
   outline: none;
-}
-
-.search-ok {
-  background-color: rgba(0,0,0,.1);
-  padding: 20px;
-  border-radius: 10px;
+  color: white;
 }
 
 .current-weather-container {
-  height: 100vh;
+  display: flex;
+  color: white;
   width: 100%;
-  background: url('./images/mobile-day-clear.jpg');
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.show-current-weather-container {
+  opacity: 1;
+}
+
+.icon {
+  flex: 1;
+}
+
+.temp {
+  color: white;
+  font-size: 30vw;
+  height: 50%;
+  flex: 2;
+}
+
+.wind-speed {
+  color: white;
+  flex: 1;
+}
+
+.city-state {
+  margin: 0 auto;
 }
