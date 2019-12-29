@@ -12,11 +12,13 @@ function App() {
   const [searchBarClassName, setSearchBarClassName] = useState('search');
   const [temp, setTemp] = useState(0);
   const [windSpeed, setWindSpeed] = useState(0);
+  const [windDirection, setWindDirection] = useState('N');
   const [showWeather, setShowWeather] = useState('current-weather-container');
   const [appTemp, setAppTemp] = useState(0);
   const [cityState, setCityState] = useState('');
   const [headerText, setHeaderText] = useState('header-text');
-
+  const [icon, setIcon] = useState('c01d');
+  
   let arrWeather = {};
 
   function getWeather() {
@@ -33,6 +35,7 @@ function App() {
 
             setTemp(arrWeather.data[0].temp);
             setWindSpeed(arrWeather.data[0].wind_spd);
+            setWindDirection(arrWeather.data[0].wind_cdir);
             setShowWeather('current-weather-container show-current-weather-container');
             setAppTemp(arrWeather.data[0].app_temp);
 
@@ -42,6 +45,7 @@ function App() {
             let currentCityState = currentCity + ', ' + currentState;
             
             setCityState(currentCityState);
+            setIcon(arrWeather.data[0].weather.icon);
 
         }
         else {
@@ -83,7 +87,7 @@ function App() {
     <div className="App">
       <AppHeader headerText={headerText} />
       <SearchBar getWeather={getWeather} cityOrZip={cityOrZipString} onKeyUp={handleOnKeyUp} searchBarClassName={searchBarClassName} searchBarPlaceHolder={name} onFocus={handleOnFocus} onBlur={handleOnBlur} onChange={handleOnChange} maxLength={max} />
-      <CurrentWeather citystate={cityState} show_weather={showWeather} wind_speed={windSpeed} temp={temp} feelsLike={appTemp}/>
+      <CurrentWeather wind_direction={windDirection} icon={icon} citystate={cityState} show_weather={showWeather} wind_speed={windSpeed} temp={temp} feelsLike={appTemp}/>
     </div>
   );
 }

@@ -85,34 +85,49 @@ code {
 }
 
 .current-weather-container {
-  display: flex;
   color: white;
   width: 100%;
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
 
+.current-weather-container h2, .feels-like, .weather-wind {
+  text-align: center;
+}
+
 .show-current-weather-container {
   opacity: 1;
-}
-
-.icon {
-  flex: 1;
-}
-
-.temp {
-  color: white;
-  font-size: 30vw;
-  height: 50%;
-  flex: 2;
-}
-
-.wind-speed {
-  color: white;
-  flex: 1;
 }
 
 .city-state {
   margin: 0 auto;
   font-size: 3vw;
+}
+
+.weather-container-inside {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10vw;
+}
+
+.weather-icon {
+  flex: 1;
+}
+
+.weather-icon img {
+  display: block;
+  width: 20vw;
+  height: 100%;
+}
+
+.weather-temp {
+  font-size: 25vw;
+  flex: 2;
+  text-align: center;
+}
+
+.weather-wind {
+  flex: 1;
+  font-size: 6vw;
 }
