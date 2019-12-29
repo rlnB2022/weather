@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import AppHeader from './AppHeader';
 import SearchBar from './SearchBar';
 import CurrentWeather from './CurrentWeather';
+import Forecast from './Forecast';
 
 function App() {
 
+  // Current variables
   const [name, setName] = useState('Enter City or Zip Code');
   const [max, setMax] = useState(5);
   const [cityOrZip, setCityOrZip] = useState('');
@@ -18,8 +20,44 @@ function App() {
   const [cityState, setCityState] = useState('');
   const [headerText, setHeaderText] = useState('header-text');
   const [icon, setIcon] = useState('c01d');
+
+  // Forecast variables
+  const [dayOfWeek, setDayOfWeek] = useState('SUN');
   
   let arrWeather = {};
+  let arrForecast = {};
+  let weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  function getDayOfWeek(date) {
+    let newDate = new Date(date);
+    let day = weekday[newDate.getDay()];
+
+    return day;
+  }
+
+  function getForecast() {
+    // perform the search
+    const xhr = new XMLHttpRequest();
+
+    xhr.onload = () => {
+        if(xhr.status >= 200 && xhr.status < 300) {
+            // success
+            arrForecast = JSON.parse(xhr.responseText);
+
+            // day of week
+            console.log(getDayOfWeek(arrForecast.data[0].datetime));
+          // setDayOfWeek(getDayOfWeek(arrForecast.data[0].datetime));
+
+        }
+        else {
+            // error
+        }
+    }
+
+    xhr.open('GET','https://api.weatherbit.io/v2.0/forecast/daily?units=I&days=5&key=c74b01fb5d114516a2260d9f3fd04907&' + cityOrZipString + '=' + cityOrZip + '', true);
+
+    xhr.send();
+  }
 
   function getWeather() {
     // reposition searchBar
@@ -46,6 +84,8 @@ function App() {
             
             setCityState(currentCityState);
             setIcon(arrWeather.data[0].weather.icon);
+
+            getForecast();
 
         }
         else {
@@ -88,6 +128,7 @@ function App() {
       <AppHeader headerText={headerText} />
       <SearchBar getWeather={getWeather} cityOrZip={cityOrZipString} onKeyUp={handleOnKeyUp} searchBarClassName={searchBarClassName} searchBarPlaceHolder={name} onFocus={handleOnFocus} onBlur={handleOnBlur} onChange={handleOnChange} maxLength={max} />
       <CurrentWeather wind_direction={windDirection} icon={icon} citystate={cityState} show_weather={showWeather} wind_speed={windSpeed} temp={temp} feelsLike={appTemp}/>
+      <Forecast />
     </div>
   );
 }
