@@ -89,42 +89,42 @@ function App() {
           arrForecast = JSON.parse(xhr.responseText);
 
           // days
-          setDayOneDay(getDayOfWeek(arrForecast.data[1].datetime));
-          setDayTwoDay(getDayOfWeek(arrForecast.data[2].datetime));
-          setDayThreeDay(getDayOfWeek(arrForecast.data[3].datetime));
-          setDayFourDay(getDayOfWeek(arrForecast.data[4].datetime));
-          setDayFiveDay(getDayOfWeek(arrForecast.data[5].datetime));
+          setDayOneDay(getDayOfWeek(arrForecast.data[2].datetime));
+          setDayTwoDay(getDayOfWeek(arrForecast.data[3].datetime));
+          setDayThreeDay(getDayOfWeek(arrForecast.data[4].datetime));
+          setDayFourDay(getDayOfWeek(arrForecast.data[5].datetime));
+          setDayFiveDay(getDayOfWeek(arrForecast.data[6].datetime));
 
           // months
-          setDayOneMonth(getMonth(arrForecast.data[1].datetime));
-          setDayTwoMonth(getMonth(arrForecast.data[2].datetime));
-          setDayThreeMonth(getMonth(arrForecast.data[3].datetime));
-          setDayFourMonth(getMonth(arrForecast.data[4].datetime));
-          setDayFiveMonth(getMonth(arrForecast.data[5].datetime));
+          setDayOneMonth(getMonth(arrForecast.data[2].datetime));
+          setDayTwoMonth(getMonth(arrForecast.data[3].datetime));
+          setDayThreeMonth(getMonth(arrForecast.data[4].datetime));
+          setDayFourMonth(getMonth(arrForecast.data[5].datetime));
+          setDayFiveMonth(getMonth(arrForecast.data[6].datetime));
 
           // numeric day
-          setDayOneDate(getNumericDay(arrForecast.data[1].datetime));
-          setDayTwoDate(getNumericDay(arrForecast.data[2].datetime));
-          setDayThreeDate(getNumericDay(arrForecast.data[3].datetime));
-          setDayFourDate(getNumericDay(arrForecast.data[4].datetime));
-          setDayFiveDate(getNumericDay(arrForecast.data[5].datetime));
+          setDayOneDate(getNumericDay(arrForecast.data[2].datetime));
+          setDayTwoDate(getNumericDay(arrForecast.data[3].datetime));
+          setDayThreeDate(getNumericDay(arrForecast.data[4].datetime));
+          setDayFourDate(getNumericDay(arrForecast.data[5].datetime));
+          setDayFiveDate(getNumericDay(arrForecast.data[6].datetime));
 
           // icons
-          setDayOneIcon(arrForecast.data[1].weather.icon);
-          setDayTwoIcon(arrForecast.data[2].weather.icon);
-          setDayThreeIcon(arrForecast.data[3].weather.icon);
-          setDayFourIcon(arrForecast.data[4].weather.icon);
-          setDayFiveIcon(arrForecast.data[5].weather.icon);
+          setDayOneIcon(arrForecast.data[2].weather.icon);
+          setDayTwoIcon(arrForecast.data[3].weather.icon);
+          setDayThreeIcon(arrForecast.data[4].weather.icon);
+          setDayFourIcon(arrForecast.data[5].weather.icon);
+          setDayFiveIcon(arrForecast.data[6].weather.icon);
 
           // show forecast
           setShowForecast('forecast-container show-forecast-container');
 
           // temps
-          setDayOneTemp(arrForecast.data[1].high_temp);
-          setDayTwoTemp(arrForecast.data[2].high_temp);
-          setDayThreeTemp(arrForecast.data[3].high_temp);
-          setDayFourTemp(arrForecast.data[4].high_temp);
-          setDayFiveTemp(arrForecast.data[5].high_temp);
+          setDayOneTemp(arrForecast.data[2].high_temp);
+          setDayTwoTemp(arrForecast.data[3].high_temp);
+          setDayThreeTemp(arrForecast.data[4].high_temp);
+          setDayFourTemp(arrForecast.data[5].high_temp);
+          setDayFiveTemp(arrForecast.data[6].high_temp);
 
         }
         else {
@@ -132,7 +132,7 @@ function App() {
         }
     }
 
-    xhr.open('GET','https://api.weatherbit.io/v2.0/forecast/daily?units=I&days=6&key=c74b01fb5d114516a2260d9f3fd04907&' + cityOrZipString + '=' + cityOrZip + '', true);
+    xhr.open('GET','https://api.weatherbit.io/v2.0/forecast/daily?units=I&days=7&key=c74b01fb5d114516a2260d9f3fd04907&' + cityOrZipString + '=' + cityOrZip + '', true);
 
     xhr.send();
   }
