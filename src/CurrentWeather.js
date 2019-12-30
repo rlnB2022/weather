@@ -8,7 +8,7 @@ function CurrentWeather(props) {
     return (
         <div className={props.show_weather}>
             <CityState citystate={props.citystate}/>
-            <IconTempWind wind_speed={props.wind_speed} wind_direction={props.wind_direction} icon={props.icon} temp={props.temp} />
+            <IconTempWind weather_desc={props.weather_desc} wind_speed={props.wind_speed} wind_direction={props.wind_direction} icon={props.icon} temp={props.temp} />
             <FeelsLike feelsLike={props.feelsLike} />
         </div>
     )

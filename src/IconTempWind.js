@@ -9,7 +9,7 @@ function IconTempWind(props) {
 
     return (
         <div className="weather-container-inside">
-            <WeatherIcon icon={props.icon} />
+            <WeatherIcon weather_desc={props.weather_desc} icon={props.icon} />
             <WeatherTemp temp={props.temp} />
             <WeatherWind wind_speed={windSpeed} wind_direction={props.wind_direction} />
         </div>

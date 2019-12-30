@@ -91,7 +91,7 @@ code {
   transition: opacity 1s ease-in-out;
 }
 
-.current-weather-container h2, .feels-like, .weather-wind {
+.current-weather-container h2, .feels-like, .weather-wind, .weather-desc {
   text-align: center;
 }
 
@@ -130,4 +130,47 @@ code {
 .weather-wind {
   flex: 1;
   font-size: 5vw;
+}
+
+.forecast-container {
+  display: none;
+  opacity: 0;
+  width: 100%;
+  transition: opacity 1s ease-in-out;
+  margin-top: 5vw;
+}
+
+.show-forecast-container {
+  display: block;
+  opacity: 1;
+}
+
+.day-container {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(0,0,0,.2);
+  margin: 1vw;
+}
+
+.day-of-week {
+  flex: 1;
+  margin-left: 2vw;
+}
+
+.month-day {
+  flex: 3;
+}
+
+.day-img {
+  flex: 1;
+  width: 10vw;
+  height: 100%;
+}
+
+.forecast-temp {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }

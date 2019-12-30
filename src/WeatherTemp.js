@@ -6,7 +6,7 @@ function WeatherTemp(props) {
 
     return (
         <div className="weather-temp">
-            {temp}
+            {temp}&deg;
         </div>
     )
 }

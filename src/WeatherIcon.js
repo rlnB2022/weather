@@ -136,6 +136,7 @@ function WeatherIcon(props) {
     return (
         <div className="weather-icon">
             <img className="weather-img" src={iconObj[props.icon]} alt="weather icon" width="100" height="100" />
+            <p className="weather-desc">{props.weather_desc}</p>
         </div>
     )
 }

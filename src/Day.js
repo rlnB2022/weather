@@ -65,7 +65,6 @@ import u00d from './images/u00d.png';
 import u00n from './images/u00n.png';
 
 function Day(props) {
-
     
     let iconObj = {
         "a01d": a01d,
@@ -134,12 +133,14 @@ function Day(props) {
         "u00n": u00n
     };
 
+    let newTemp = Math.floor(props.temp);
+
     return(
         <div className="day-container">
-            <p className="day-of-week">{props.dayOfWeek}</p>
-            {/* <p className="month-day">{props.monthDay}</p>
-            <img src={iconObj[props.icon]} alt="weather icon" width="100" height="100" />
-            <p className="forecast-temp">{props.forecastTemp}</p> */}
+            <p className="day-of-week">{props.day}</p>
+            <p className="month-day">{props.month} {props.date}</p>
+            <img className="day-img" src={iconObj[props.icon]} alt="weather icon" width="50" height="50" />
+            <p className="forecast-temp">{newTemp}&deg;</p>
         </div>
     )
 }
