@@ -29,6 +29,8 @@ code {
   background: url('./images/mobile-day-clear.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-header {
@@ -38,6 +40,7 @@ code {
   height: 15vh;
   background-color: rgba(0,0,0,.2);
   color: white;
+  flex: 1;
 }
 
 .header-text {
@@ -89,6 +92,7 @@ code {
   width: 100%;
   opacity: 0;
   transition: opacity 1s ease-in-out;
+  flex: 1;
 }
 
 .current-weather-container h2, .feels-like, .weather-wind, .weather-desc {
@@ -138,6 +142,7 @@ code {
   width: 100%;
   transition: opacity 1s ease-in-out;
   margin-top: 5vw;
+  flex: 1;
 }
 
 .show-forecast-container {
