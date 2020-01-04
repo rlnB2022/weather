@@ -40,7 +40,6 @@ code {
   height: 15vh;
   background-color: rgba(0,0,0,.2);
   color: white;
-  flex: 1;
 }
 
 .header-text {
@@ -88,10 +87,11 @@ code {
 }
 
 .current-weather-container {
+  display: none;
   color: white;
   width: 100%;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: all 4s ease-in-out;
   flex: 1;
 }
 
@@ -100,6 +100,7 @@ code {
 }
 
 .show-current-weather-container {
+  display: block;
   opacity: 1;
 }
 
@@ -179,4 +180,42 @@ code {
   display: flex;
   justify-content: center;
   font-size: 5.5vw;
+}
+
+.dark-light-switch {
+  position: absolute;
+  top: 2vw;
+  right: 2vw;
+  background-color: darkgray;
+  border-radius: 20px;
+  box-shadow: 1px 1px 4px inset black;
+  height: 5vh;
+  width: 25vw;
+  display: flex;
+  align-items: center;
+}
+
+.switch {
+  background-color: white;
+  color: blue;
+  width: 50%;
+  height: 80%;
+  position: relative;
+  left: 6%;
+  top: 5%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all .2s ease-in-out;
+  box-shadow: 1px 1px 4px black;
+}
+
+.switch-active {
+  left: 45%;
+  box-shadow: -1px 1px 4px black;
+  background-color: black;
+  color: white;
 }

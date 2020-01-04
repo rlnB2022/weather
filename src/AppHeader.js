@@ -6,6 +6,11 @@ function AppHeader(props) {
             <div className={props.headerText}>
                 The Weather Guy
             </div>
+            <div className={"dark-light-switch"} onClick={props.switch}>
+                <div className={props.darkLightText}>
+                    {props.darkLight}
+                </div>
+            </div>
         </div>
     )
 }
