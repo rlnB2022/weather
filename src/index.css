@@ -51,7 +51,7 @@ code {
 
 .header-text-small {
   font-size: 6vw;
-  top: -5vh;
+  top: -4vh;
 }
 
 .search {
@@ -59,7 +59,7 @@ code {
   top: 50vh;
   left: 50vw;
   transform: translate(-50%, -50%);
-  transition: top .2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 
 .search-to-top {
@@ -67,7 +67,6 @@ code {
 }
 
 .input-container {
-  height: 10vh;
   width: 25%;
   margin: 0 auto;
   display: flex;
@@ -182,40 +181,33 @@ code {
   font-size: 5.5vw;
 }
 
-.dark-light-switch {
-  position: absolute;
-  top: 2vw;
-  right: 2vw;
-  background-color: darkgray;
-  border-radius: 20px;
-  box-shadow: 1px 1px 4px inset black;
-  height: 5vh;
-  width: 25vw;
-  display: flex;
-  align-items: center;
+@media (min-width: 800px) {
+
+  .app-header {
+    justify-content: flex-start;
+    align-items: none;
+  }
+
+  .search-to-top {
+    top: 8vh;
+    left: 10px;
+    transform: none;
+  }
+
+  .header-text {
+    left: 20px;
+    font-size: 4vw;
+  }
+
+  .header-text-small {
+    font-size: 3vw;
+  }
+
+  .user-input {
+    font-size: 2vw;
+  }
 }
 
-.switch {
-  background-color: white;
-  color: blue;
-  width: 50%;
-  height: 80%;
-  position: relative;
-  left: 6%;
-  top: 5%;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 14px;
-  transition: all .2s ease-in-out;
-  box-shadow: 1px 1px 4px black;
-}
+@media (min-width: 1200px) {
 
-.switch-active {
-  left: 45%;
-  box-shadow: -1px 1px 4px black;
-  background-color: black;
-  color: white;
 }
