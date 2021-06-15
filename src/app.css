@@ -1,0 +1,8 @@
+.app {
+    height: 100vh;
+    width: 100vw;
+    background: url('./images/mobile-day-clear.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  

@@ -1,0 +1,23 @@
+.app-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,.2);
+    color: #fff;
+    height: 15vh;
+  }
+
+  .header-text {
+    position: relative;
+    top: 0vh;
+    transition: all .2s ease-in-out;
+  }
+  
+  .header-text p {
+    font-size: 8vw;
+  }
+  
+.header-text-small {
+  font-size: 6vw;
+  top: -4vh;
+}

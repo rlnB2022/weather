@@ -3,11 +3,12 @@ import AppHeader from './AppHeader';
 import SearchBar from './SearchBar';
 import CurrentWeather from './CurrentWeather';
 import Forecast from './Forecast';
+import './app.css';
 
 function App() {
 
   // Current variables
-  const [name, setName] = useState('Enter City or Zip Code');
+  const [city, setCity] = useState('Enter City or Zip Code');
   const [max, setMax] = useState(5);
   const [cityOrZip, setCityOrZip] = useState('');
   const [cityOrZipString, setCityOrZipString] = useState('city');
@@ -191,11 +192,11 @@ function App() {
   }
 
   function handleOnFocus(newValue) {
-    setName(newValue);
+    setCity(newValue);
   }
 
   function handleOnBlur(newValue) {
-    setName(newValue);
+    setCity(newValue);
   }
 
   function handleOnKeyUp() {
@@ -203,9 +204,9 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="app">
       <AppHeader headerText={headerText} />
-      <SearchBar getWeather={getWeather} cityOrZip={cityOrZipString} onKeyUp={handleOnKeyUp} searchBarClassName={searchBarClassName} searchBarPlaceHolder={name} onFocus={handleOnFocus} onBlur={handleOnBlur} onChange={handleOnChange} maxLength={max} />
+      <SearchBar getWeather={getWeather} cityOrZip={cityOrZipString} onKeyUp={handleOnKeyUp} searchBarClassName={searchBarClassName} searchBarPlaceHolder={city} onFocus={handleOnFocus} onBlur={handleOnBlur} onChange={handleOnChange} maxLength={max} />
       {/* <CurrentWeather weather_desc={weatherDesc} wind_direction={windDirection} icon={icon} citystate={cityState} show_weather={showWeather} wind_speed={windSpeed} temp={temp} feelsLike={appTemp}/>
       <Forecast show_forecast={showForecast} dayOneDay={dayOneDay} dayTwoDay={dayTwoDay} dayThreeDay={dayThreeDay} dayFourDay={dayFourDay} dayFiveDay={dayFiveDay} dayOneMonth={dayOneMonth} dayTwoMonth={dayTwoMonth} dayThreeMonth={dayThreeMonth} dayFourMonth={dayFourMonth} dayFiveMonth={dayFiveMonth} dayOneDate={dayOneDate} dayTwoDate={dayTwoDate} dayThreeDate={dayThreeDate} dayFourDate={dayFourDate} dayFiveDate={dayFiveDate} dayOneIcon={dayOneIcon} dayTwoIcon={dayTwoIcon} dayThreeIcon={dayThreeIcon} dayFourIcon={dayFourIcon} dayFiveIcon={dayFiveIcon} dayOneTemp={dayOneTemp} dayTwoTemp={dayTwoTemp} dayThreeTemp={dayThreeTemp} dayFourTemp={dayFourTemp} dayFiveTemp={dayFiveTemp}/> */}
     </div>
