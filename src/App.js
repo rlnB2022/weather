@@ -55,13 +55,12 @@ function App() {
   const [dayFourDate, setDayFourDate] = useState();
   const [dayFiveDate, setDayFiveDate] = useState();
 
-  let arrWeather = {};
-  let arrForecast = {};
   let weekday = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   let monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   
   function getDayOfWeek(date) {
-    let newDate = new Date(date);
+    let d = new Date(date);
+    let newDate = new Date(d.getTime() - d.getTimezoneOffset() * -60000);
     let day = weekday[newDate.getDay()];
 
     return day;
@@ -75,80 +74,86 @@ function App() {
   }
 
   function getNumericDay(date) {
-    let newDate = new Date(date);
+    let d = new Date(date);
+    let newDay = new Date(d.getTime() - d.getTimezoneOffset() * -60000);
 
-    return newDate.getDate();
+    return newDay.getDate();
   }
 
   function getForecast() {
-    // perform the search
-    const xhr = new XMLHttpRequest();
+    fetch('https://api.weatherbit.io/v2.0/forecast/daily?units=I&days=10&key=c74b01fb5d114516a2260d9f3fd04907&' + cityOrZipString + '=' + cityOrZip + '')
+    .then(
+      function(response) {
+        if(response.status !== 200) {
+          console.log('There was a problem. Status Code: ' + response.status);
+          return;
+        }
 
-    xhr.onload = () => {
-        if(xhr.status >= 200 && xhr.status < 300) {
-          // success
-          arrForecast = JSON.parse(xhr.responseText);
+        // Examine the text in the response
+        response.json().then(function(arrForecast) {
+          console.log(arrForecast.data);
 
           // days
-          setDayOneDay(getDayOfWeek(arrForecast.data[2].datetime));
-          setDayTwoDay(getDayOfWeek(arrForecast.data[3].datetime));
-          setDayThreeDay(getDayOfWeek(arrForecast.data[4].datetime));
-          setDayFourDay(getDayOfWeek(arrForecast.data[5].datetime));
-          setDayFiveDay(getDayOfWeek(arrForecast.data[6].datetime));
+          setDayOneDay(getDayOfWeek(arrForecast.data[1].datetime));
+          setDayTwoDay(getDayOfWeek(arrForecast.data[2].datetime));
+          setDayThreeDay(getDayOfWeek(arrForecast.data[3].datetime));
+          setDayFourDay(getDayOfWeek(arrForecast.data[4].datetime));
+          setDayFiveDay(getDayOfWeek(arrForecast.data[5].datetime));
 
           // months
-          setDayOneMonth(getMonth(arrForecast.data[2].datetime));
-          setDayTwoMonth(getMonth(arrForecast.data[3].datetime));
-          setDayThreeMonth(getMonth(arrForecast.data[4].datetime));
-          setDayFourMonth(getMonth(arrForecast.data[5].datetime));
-          setDayFiveMonth(getMonth(arrForecast.data[6].datetime));
+          setDayOneMonth(getMonth(arrForecast.data[1].datetime));
+          setDayTwoMonth(getMonth(arrForecast.data[2].datetime));
+          setDayThreeMonth(getMonth(arrForecast.data[3].datetime));
+          setDayFourMonth(getMonth(arrForecast.data[4].datetime));
+          setDayFiveMonth(getMonth(arrForecast.data[5].datetime));
 
           // numeric day
-          setDayOneDate(getNumericDay(arrForecast.data[2].datetime));
-          setDayTwoDate(getNumericDay(arrForecast.data[3].datetime));
-          setDayThreeDate(getNumericDay(arrForecast.data[4].datetime));
-          setDayFourDate(getNumericDay(arrForecast.data[5].datetime));
-          setDayFiveDate(getNumericDay(arrForecast.data[6].datetime));
+          setDayOneDate(getNumericDay(arrForecast.data[1].datetime));
+          setDayTwoDate(getNumericDay(arrForecast.data[2].datetime));
+          setDayThreeDate(getNumericDay(arrForecast.data[3].datetime));
+          setDayFourDate(getNumericDay(arrForecast.data[4].datetime));
+          setDayFiveDate(getNumericDay(arrForecast.data[5].datetime));
 
           // icons
-          setDayOneIcon(arrForecast.data[2].weather.icon);
-          setDayTwoIcon(arrForecast.data[3].weather.icon);
-          setDayThreeIcon(arrForecast.data[4].weather.icon);
-          setDayFourIcon(arrForecast.data[5].weather.icon);
-          setDayFiveIcon(arrForecast.data[6].weather.icon);
+          setDayOneIcon(arrForecast.data[1].weather.icon);
+          setDayTwoIcon(arrForecast.data[2].weather.icon);
+          setDayThreeIcon(arrForecast.data[3].weather.icon);
+          setDayFourIcon(arrForecast.data[4].weather.icon);
+          setDayFiveIcon(arrForecast.data[5].weather.icon);
 
           // show forecast
           setShowForecast('forecast-container show-forecast-container');
 
           // temps
-          setDayOneTemp(arrForecast.data[2].high_temp);
-          setDayTwoTemp(arrForecast.data[3].high_temp);
-          setDayThreeTemp(arrForecast.data[4].high_temp);
-          setDayFourTemp(arrForecast.data[5].high_temp);
-          setDayFiveTemp(arrForecast.data[6].high_temp);
+          setDayOneTemp(arrForecast.data[1].high_temp);
+          setDayTwoTemp(arrForecast.data[2].high_temp);
+          setDayThreeTemp(arrForecast.data[3].high_temp);
+          setDayFourTemp(arrForecast.data[4].high_temp);
+          setDayFiveTemp(arrForecast.data[5].high_temp);
+        });
+      }
+    )
+    .catch(function(err) {
+      console.log('Fetch Error:', err);
+    });
 
-        }
-        else {
-            // error
-        }
-    }
-
-    xhr.open('GET','https://api.weatherbit.io/v2.0/forecast/daily?units=I&days=7&key=c74b01fb5d114516a2260d9f3fd04907&' + cityOrZipString + '=' + cityOrZip + '', true);
-
-    xhr.send();
-  }
+}
 
   function getWeather() {
     // reposition searchBar
     setSearchBarClassName('search search-to-top');
 
-    // perform the search
-    const xhr = new XMLHttpRequest();
+    fetch('https://api.weatherbit.io/v2.0/current?units=I&key=c74b01fb5d114516a2260d9f3fd04907&' + cityOrZipString + '=' + cityOrZip + '')
+      .then(
+        function(response) {
+          if(response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code: ' + response.status);
+            return;
+          }
 
-    xhr.onload = () => {
-        if(xhr.status >= 200 && xhr.status < 300) {
-            // success
-            arrWeather = JSON.parse(xhr.responseText);
+          // Examine the text in the response
+          response.json().then(function(arrWeather) {
+            console.log(arrWeather.data);
 
             setTemp(arrWeather.data[0].temp);
             setWindSpeed(arrWeather.data[0].wind_spd);
@@ -166,16 +171,12 @@ function App() {
             setIcon(arrWeather.data[0].weather.icon);
 
             getForecast();
-
+          });
         }
-        else {
-            // error
-        }
-    }
-
-    xhr.open('GET','https://api.weatherbit.io/v2.0/current?units=I&key=c74b01fb5d114516a2260d9f3fd04907&' + cityOrZipString + '=' + cityOrZip + '', true);
-
-    xhr.send();
+      )
+      .catch(function(err) {
+        console.log('Fetch Error:', err);
+      });
   }
 
   function handleOnChange(e) {
@@ -207,8 +208,8 @@ function App() {
     <div className="app">
       <AppHeader headerText={headerText} />
       <SearchBar getWeather={getWeather} cityOrZip={cityOrZipString} onKeyUp={handleOnKeyUp} searchBarClassName={searchBarClassName} searchBarPlaceHolder={city} onFocus={handleOnFocus} onBlur={handleOnBlur} onChange={handleOnChange} maxLength={max} />
-      {/* <CurrentWeather weather_desc={weatherDesc} wind_direction={windDirection} icon={icon} citystate={cityState} show_weather={showWeather} wind_speed={windSpeed} temp={temp} feelsLike={appTemp}/>
-      <Forecast show_forecast={showForecast} dayOneDay={dayOneDay} dayTwoDay={dayTwoDay} dayThreeDay={dayThreeDay} dayFourDay={dayFourDay} dayFiveDay={dayFiveDay} dayOneMonth={dayOneMonth} dayTwoMonth={dayTwoMonth} dayThreeMonth={dayThreeMonth} dayFourMonth={dayFourMonth} dayFiveMonth={dayFiveMonth} dayOneDate={dayOneDate} dayTwoDate={dayTwoDate} dayThreeDate={dayThreeDate} dayFourDate={dayFourDate} dayFiveDate={dayFiveDate} dayOneIcon={dayOneIcon} dayTwoIcon={dayTwoIcon} dayThreeIcon={dayThreeIcon} dayFourIcon={dayFourIcon} dayFiveIcon={dayFiveIcon} dayOneTemp={dayOneTemp} dayTwoTemp={dayTwoTemp} dayThreeTemp={dayThreeTemp} dayFourTemp={dayFourTemp} dayFiveTemp={dayFiveTemp}/> */}
+      <CurrentWeather weather_desc={weatherDesc} wind_direction={windDirection} icon={icon} citystate={cityState} show_weather={showWeather} wind_speed={windSpeed} temp={temp} feelsLike={appTemp}/>
+      <Forecast show_forecast={showForecast} dayOneDay={dayOneDay} dayTwoDay={dayTwoDay} dayThreeDay={dayThreeDay} dayFourDay={dayFourDay} dayFiveDay={dayFiveDay} dayOneMonth={dayOneMonth} dayTwoMonth={dayTwoMonth} dayThreeMonth={dayThreeMonth} dayFourMonth={dayFourMonth} dayFiveMonth={dayFiveMonth} dayOneDate={dayOneDate} dayTwoDate={dayTwoDate} dayThreeDate={dayThreeDate} dayFourDate={dayFourDate} dayFiveDate={dayFiveDate} dayOneIcon={dayOneIcon} dayTwoIcon={dayTwoIcon} dayThreeIcon={dayThreeIcon} dayFourIcon={dayFourIcon} dayFiveIcon={dayFiveIcon} dayOneTemp={dayOneTemp} dayTwoTemp={dayTwoTemp} dayThreeTemp={dayThreeTemp} dayFourTemp={dayFourTemp} dayFiveTemp={dayFiveTemp}/>
     </div>
   );
 }
