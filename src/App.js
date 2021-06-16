@@ -135,6 +135,7 @@ function App() {
     )
     .catch(function(err) {
       console.log('Fetch Error:', err);
+      alert('Please enter a 5-digit Zip Code or a City/State');
     });
 
 }

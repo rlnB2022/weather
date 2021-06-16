@@ -5,10 +5,10 @@ function SearchBar(props) {
 
     function handleKeyUp(e) {
         if(e.which === 13 || e.keycode === 13) {
-            if(props.cityOrZip === 'postal_code' && e.target.value.length === 5) {
+            // if(props.cityOrZip === 'postal_code' && e.target.value.length === 5) {
                 document.getElementById('header-text-id').addEventListener('transitionend', props.getWeather());
                 props.onKeyUp();
-            }
+            // }
         }
     }
 
