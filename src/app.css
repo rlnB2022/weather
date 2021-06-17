@@ -1,8 +1,10 @@
 .app {
+  display: grid;
+  grid-template-rows: 1fr 3fr 6fr;
+  grid-template-columns: 1fr;
     height: 100vh;
     background: url('./images/mobile-day-clear.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
   }
-  
