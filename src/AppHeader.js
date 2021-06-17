@@ -3,9 +3,9 @@ import './appheader.css';
 
 function AppHeader(props) {
     return (
-        <div id='header-text-id' className="app-header">
-            <div className={props.headerText}>
-                <p>Rick's Weather App</p>
+        <div className="app-header">
+            <div>
+                <p id='header-text-id' className={props.headerText}>Rick's Weather App</p>
             </div>
         </div>
     )

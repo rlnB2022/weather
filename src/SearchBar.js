@@ -27,7 +27,7 @@ function SearchBar(props) {
     return (
         <section id="searchBar" className={props.searchBarClassName}>
             <div className="input-container">
-                <input type="text" onKeyUp={handleKeyUp} maxLength={props.maxLength} onChange={handleOnChange} onBlur={handleOnBlur} onFocus={handleOnFocus} placeholder={props.searchBarPlaceHolder} className='user-input' />
+                <input type="text" onKeyUp={handleKeyUp} maxLength={props.maxLength} onChange={handleOnChange} onBlur={handleOnBlur} onFocus={handleOnFocus} placeholder={props.searchBarPlaceHolder} className={props.inputClassName} />
             </div>
         </section>
     )

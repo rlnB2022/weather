@@ -13,6 +13,7 @@ function App() {
   const [cityOrZip, setCityOrZip] = useState('');
   const [cityOrZipString, setCityOrZipString] = useState('city');
   const [searchBarClassName, setSearchBarClassName] = useState('search');
+  const [inputClassName, setInputClassName] = useState('user-input');
   const [temp, setTemp] = useState(0);
   const [windSpeed, setWindSpeed] = useState(0);
   const [windDirection, setWindDirection] = useState('N');
@@ -203,12 +204,13 @@ function App() {
 
   function handleOnKeyUp() {
     setHeaderText('header-text header-text-small');
+    setInputClassName('user-input user-input-top')
   }
 
   return (
     <div className="app">
       <AppHeader headerText={headerText} />
-      <SearchBar getWeather={getWeather} cityOrZip={cityOrZipString} onKeyUp={handleOnKeyUp} searchBarClassName={searchBarClassName} searchBarPlaceHolder={city} onFocus={handleOnFocus} onBlur={handleOnBlur} onChange={handleOnChange} maxLength={max} />
+      <SearchBar getWeather={getWeather} cityOrZip={cityOrZipString} onKeyUp={handleOnKeyUp} searchBarClassName={searchBarClassName} searchBarPlaceHolder={city} onFocus={handleOnFocus} onBlur={handleOnBlur} onChange={handleOnChange} maxLength={max} inputClassName={inputClassName} />
       <CurrentWeather weather_desc={weatherDesc} wind_direction={windDirection} icon={icon} citystate={cityState} show_weather={showWeather} wind_speed={windSpeed} temp={temp} feelsLike={appTemp}/>
       <Forecast show_forecast={showForecast} dayOneDay={dayOneDay} dayTwoDay={dayTwoDay} dayThreeDay={dayThreeDay} dayFourDay={dayFourDay} dayFiveDay={dayFiveDay} dayOneMonth={dayOneMonth} dayTwoMonth={dayTwoMonth} dayThreeMonth={dayThreeMonth} dayFourMonth={dayFourMonth} dayFiveMonth={dayFiveMonth} dayOneDate={dayOneDate} dayTwoDate={dayTwoDate} dayThreeDate={dayThreeDate} dayFourDate={dayFourDate} dayFiveDate={dayFiveDate} dayOneIcon={dayOneIcon} dayTwoIcon={dayTwoIcon} dayThreeIcon={dayThreeIcon} dayFourIcon={dayFourIcon} dayFiveIcon={dayFiveIcon} dayOneTemp={dayOneTemp} dayTwoTemp={dayTwoTemp} dayThreeTemp={dayThreeTemp} dayFourTemp={dayFourTemp} dayFiveTemp={dayFiveTemp}/>
     </div>
