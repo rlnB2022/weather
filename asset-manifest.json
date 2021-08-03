@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/weather/static/css/main.0204424b.chunk.css",
+    "main.js": "/weather/static/js/main.fb37f8c7.chunk.js",
+    "main.js.map": "/weather/static/js/main.fb37f8c7.chunk.js.map",
+    "runtime-main.js": "/weather/static/js/runtime-main.f857f3f3.js",
+    "runtime-main.js.map": "/weather/static/js/runtime-main.f857f3f3.js.map",
+    "static/js/2.b1611297.chunk.js": "/weather/static/js/2.b1611297.chunk.js",
+    "static/js/2.b1611297.chunk.js.map": "/weather/static/js/2.b1611297.chunk.js.map",
+    "index.html": "/weather/index.html",
+    "precache-manifest.07c23e28b32f622d6847ddd815a6d956.js": "/weather/precache-manifest.07c23e28b32f622d6847ddd815a6d956.js",
+    "service-worker.js": "/weather/service-worker.js",
+    "static/css/main.0204424b.chunk.css.map": "/weather/static/css/main.0204424b.chunk.css.map",
+    "static/js/2.b1611297.chunk.js.LICENSE": "/weather/static/js/2.b1611297.chunk.js.LICENSE",
+    "static/media/app.css": "/weather/static/media/mobile-day-clear.82c41ec6.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f857f3f3.js",
+    "static/js/2.b1611297.chunk.js",
+    "static/css/main.0204424b.chunk.css",
+    "static/js/main.fb37f8c7.chunk.js"
+  ]
+}
